@@ -298,7 +298,6 @@
           const outputTextarea = document.getElementById("output");
           const openaiResponseTextarea =
             document.getElementById("openai-response");
-          const model = document.getElementById("models").value;
           const messages = outputTextarea.value
             .split("########")
             .map((content) => {
@@ -306,26 +305,28 @@
             });
           messages.push({ role: "user", content: instruction });
 
-          const sendToOpenAIButton = document.getElementById("send-to-mistralai");
+          const sendToOpenAIButton =
+            document.getElementById("send-to-mistralai");
           sendToOpenAIButton.disabled = true;
           sendToOpenAIButton.textContent = "Loading...";
 
           output = {
-        "prefix": "A description of the code solution",
-        "programming_language": language,
-        "imports": "The imports",
-        "code": "The functioning code block. Write the whole code in a single line and use \t and \n for tab and new line",
-        "sample_io": "Generate the sample input and output for the code generated {'input': '', 'output': ''}",
-    }
+            prefix: "A description of the code solution",
+            programming_language: language,
+            imports: "The imports",
+            code: "The functioning code block. Write the whole code in a single line and use \t and \n for tab and new line",
+            sample_io:
+              "Generate the sample input and output for the code generated {'input': '', 'output': ''}",
+          };
 
-    model = "codestral-latest"
-    messages = [
-        {
-            "role": "system",
-            "content": `You're a coding assistant. Ensure any code you provided can be executed with all required imports and variables defined. Structure your answer in the JSON format: ${output} e's the question:`,
-        },
-        {"role": "user", "content": instruction},
-    ]
+          model = "codestral-latest";
+          messages = [
+            {
+              role: "system",
+              content: `You're a coding assistant. Ensure any code you provided can be executed with all required imports and variables defined. Structure your answer in the JSON format: ${output} e's the question:`,
+            },
+            { role: "user", content: instruction },
+          ];
           const response = await fetch(
             "https://codestral.mistral.ai/v1/chat/completions",
             {
