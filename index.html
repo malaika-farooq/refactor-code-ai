@@ -71,10 +71,11 @@
       }
       label {
         font-weight: bold;
+        display: flex;
       }
       .flex-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: baseline;
         flex-wrap: wrap;
       }
       .flex-item {
@@ -120,9 +121,13 @@
       ></textarea>
       <br />
 
-      <div class="flex-container" style="align-items: center">
+      <div class="flex-container" style="display: fle; align-items: center">
         <button id="send-to-mistralai">Refactor!!!</button>
-        <label for="mistral-key">Enter you API Key:</label>
+      </div>
+      <div class="flex-container" style="display: fle; align-items: center">
+        <label for="mistral-key" style="display: flex; align-items: center"
+          >Enter you API Key:</label
+        >
         <input type="password" id="mistral-key" name="mistral-key" />
         <button id="save-api-key">Save Key</button>
       </div>
